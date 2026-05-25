@@ -7,21 +7,21 @@
 }
 
 :root {
-  --bg:            #0D1B2A;
-  --bg-dark:       #091422;
-  --bg-card:       #152336;
-  --bg-card-hover: #1C2D43;
+  --bg:            #0D0D1A;
+  --bg-dark:       #090912;
+  --bg-card:       #13132A;
+  --bg-card-hover: #1A1A38;
 
-  --fg:            #E4F0EC;
-  --fg-muted:      rgba(228, 240, 236, 0.5);
-  --fg-subtle:     rgba(228, 240, 236, 0.15);
+  --fg:            #EDE9FF;
+  --fg-muted:      rgba(237, 233, 255, 0.5);
+  --fg-subtle:     rgba(237, 233, 255, 0.15);
 
-  --accent:        #00D4A0;
-  --accent-dim:    rgba(0, 212, 160, 0.1);
-  --accent-border: rgba(0, 212, 160, 0.3);
+  --accent:        #A78BFA;
+  --accent-dim:    rgba(167, 139, 250, 0.1);
+  --accent-border: rgba(167, 139, 250, 0.3);
 
-  --border:        rgba(228, 240, 236, 0.08);
-  --border-hover:  rgba(228, 240, 236, 0.18);
+  --border:        rgba(237, 233, 255, 0.08);
+  --border-hover:  rgba(237, 233, 255, 0.18);
 
   --font-display: 'Playfair Display', serif;
   --font-body:    'DM Sans', sans-serif;
@@ -57,6 +57,28 @@ ul {
 
 p {
   color: var(--fg-muted);
+}
+
+/* Navbar scrolled state — CSS transition, sin re-render de React */
+nav.nav--scrolled {
+  background: rgba(9, 9, 18, 0.92) !important;
+  backdrop-filter: blur(16px) !important;
+  border-bottom-color: var(--accent-border) !important;
+}
+
+/* Color de links via CSS — GPU no puede acelerar color pero evita GSAP ticker extra */
+.nav-link-item a {
+  transition: color 0.2s;
+}
+.nav-link-item a.is-active {
+  color: var(--accent) !important;
+}
+
+/* will-change en elementos que GSAP anima con transform/opacity */
+.hero-eyebrow, .hero-title, .hero-subtitle, .hero-body, .hero-scroll,
+.hero-cta a, .about-animate, .skill-group, .skill-item, .contact-animate,
+.project-card-wrapper {
+  will-change: transform, opacity;
 }
 
 ::selection {

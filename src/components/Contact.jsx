@@ -3,8 +3,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 
-gsap.registerPlugin(useGSAP, ScrollTrigger)
-
 function SocialLink({ href, label }) {
   const [hovered, setHovered] = useState(false)
   return (
@@ -37,7 +35,7 @@ export default function Contact() {
   useGSAP(() => {
     gsap.from('.contact-animate', {
       opacity: 0, y: 30, stagger: 0.1, duration: 0.7, ease: 'power3.out',
-      scrollTrigger: { trigger: containerRef.current, start: 'top 75%' },
+      scrollTrigger: { trigger: containerRef.current, start: 'top 75%', once: true },
     })
   }, { scope: containerRef })
 

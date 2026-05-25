@@ -3,8 +3,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 
-gsap.registerPlugin(useGSAP, ScrollTrigger)
-
 export default function About({ compact = false }) {
   const containerRef = useRef(null)
 
@@ -27,6 +25,7 @@ export default function About({ compact = false }) {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top 80%',
+        once: true,
       },
     })
   }, { scope: containerRef })

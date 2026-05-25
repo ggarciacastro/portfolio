@@ -3,13 +3,11 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 
-gsap.registerPlugin(useGSAP, ScrollTrigger)
-
 const skillGroups = [
-  { category: 'Frontend',         skills: ['React', 'TypeScript', 'HTML/CSS', 'Next.js', 'Tailwind'] },
-  { category: 'Backend',          skills: ['Node.js', 'Python', 'Java', 'FastAPI', 'Spring Boot'] },
-  { category: 'Bases de datos',   skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis'] },
-  { category: 'Herramientas',     skills: ['Git', 'Docker', 'Linux', 'AWS', 'Figma'] },
+  { category: 'Frontend',       skills: ['React', 'TypeScript', 'HTML/CSS', 'Next.js', 'Tailwind'] },
+  { category: 'Backend',        skills: ['Node.js', 'Python', 'Java', 'FastAPI', 'Spring Boot'] },
+  { category: 'Bases de datos', skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis'] },
+  { category: 'Herramientas',   skills: ['Git', 'Docker', 'Linux', 'AWS', 'Figma'] },
 ]
 
 export default function Skills() {
@@ -18,17 +16,12 @@ export default function Skills() {
   useGSAP(() => {
     gsap.from('.skills-header', {
       opacity: 0, y: 24, duration: 0.6, ease: 'power3.out',
-      scrollTrigger: { trigger: '.skills-header', start: 'top 85%' },
+      scrollTrigger: { trigger: '.skills-header', start: 'top 85%', once: true },
     })
 
-    gsap.from('.skill-group', {
-      opacity: 0, y: 30, stagger: 0.12, duration: 0.6, ease: 'power3.out',
-      scrollTrigger: { trigger: '.skill-group', start: 'top 80%' },
-    })
-
-    gsap.from('.skill-item', {
-      opacity: 0, x: -12, stagger: 0.04, duration: 0.4, ease: 'power2.out',
-      scrollTrigger: { trigger: '.skill-item', start: 'top 85%' },
+    gsap.from(['.skill-group', '.skill-item'], {
+      opacity: 0, y: 20, stagger: 0.06, duration: 0.5, ease: 'power3.out',
+      scrollTrigger: { trigger: '.skill-group', start: 'top 80%', once: true },
     })
   }, { scope: containerRef })
 

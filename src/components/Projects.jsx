@@ -3,8 +3,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 
-gsap.registerPlugin(useGSAP, ScrollTrigger)
-
 function SvgYGame() {
   const size = 5
   const r = 14
@@ -45,7 +43,7 @@ function SvgYGame() {
           key={i}
           d={hexPath(cx, cy)}
           fill={colors[i] ?? 'rgba(255,255,255,0.04)'}
-          stroke={colors[i] ? 'rgba(255,255,255,0.2)' : 'rgba(99,102,241,0.25)'}
+          stroke={colors[i] ? 'rgba(255,255,255,0.2)' : 'rgba(167,139,250,0.25)'}
           strokeWidth="1"
         />
       ))}
