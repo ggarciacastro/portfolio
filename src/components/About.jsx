@@ -53,23 +53,25 @@ export default function About({ compact = false }) {
         Del código<br />al dato.
       </h2>
 
-      {/* Foto placeholder */}
-      <div className="about-animate" style={{
-        width: '100%', aspectRatio: '4/3',
-        background: 'var(--bg-card)', border: '1px solid var(--accent-border)',
-        borderRadius: '4px', display: 'flex',
-        alignItems: 'center', justifyContent: 'center',
-        marginBottom: '1.8rem', position: 'relative', overflow: 'hidden',
-      }}>
-        <span style={{ color: 'var(--fg-muted)', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
-          Tu foto aquí
-        </span>
-        <div style={{
-          position: 'absolute', bottom: '-0.8rem', right: '-0.8rem',
-          width: '50%', height: '50%',
-          border: '1px solid var(--accent-border)', borderRadius: '2px',
-        }} />
-      </div>
+      {/* Foto placeholder — solo en vista standalone */}
+      {!compact && (
+        <div className="about-animate" style={{
+          width: '100%', aspectRatio: '4/3',
+          background: 'var(--bg-card)', border: '1px solid var(--accent-border)',
+          borderRadius: '4px', display: 'flex',
+          alignItems: 'center', justifyContent: 'center',
+          marginBottom: '1.8rem', position: 'relative', overflow: 'hidden',
+        }}>
+          <span style={{ color: 'var(--fg-muted)', fontSize: '0.8rem', letterSpacing: '0.1em' }}>
+            Tu foto aquí
+          </span>
+          <div style={{
+            position: 'absolute', bottom: '-0.8rem', right: '-0.8rem',
+            width: '50%', height: '50%',
+            border: '1px solid var(--accent-border)', borderRadius: '2px',
+          }} />
+        </div>
+      )}
 
       <p className="about-animate" style={{ color: 'var(--fg-muted)', fontSize: '0.9rem', lineHeight: 1.9, marginBottom: '1rem' }}>
         Ingeniero de software fullstack con base sólida en arquitectura y adaptación rápida a nuevos lenguajes y tecnologías.

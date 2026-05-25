@@ -71,8 +71,7 @@ export default function Contact() {
           color: 'var(--fg-muted)', fontSize: '1.05rem',
           lineHeight: 1.9, marginBottom: '3rem',
         }}>
-          Estoy abierto a nuevas oportunidades, colaboraciones o simplemente
-          a una buena conversación sobre tecnología.
+          Estoy abierto a nuevas oportunidades o colaboraciones.
         </p>
 
         <a
