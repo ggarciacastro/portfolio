@@ -1,4 +1,9 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 function SvgYGame() {
   const size = 5
@@ -50,7 +55,6 @@ function SvgYGame() {
 
 function SvgCompiler() {
   const stages = ['Lexical', 'Syntax', 'Semantic', 'Codegen']
-  const boxW = 52
   const boxH = 20
   const gap = 6
   const totalW = 140
@@ -95,8 +99,6 @@ function SvgCompiler() {
 function SvgReservas() {
   const w = 140
   const h = 130
-
-  // Calendario: 3x3 grid de celdas
   const days = [
     { x: 10,  y: 20, status: 'free' },
     { x: 38,  y: 20, status: 'taken' },
@@ -108,30 +110,20 @@ function SvgReservas() {
     { x: 38,  y: 76, status: 'free' },
     { x: 66,  y: 76, status: 'taken' },
   ]
-
   const colorMap = {
     free:  { fill: 'rgba(255,255,255,0.04)', stroke: 'rgba(0,212,160,0.15)' },
     taken: { fill: 'rgba(228,240,236,0.07)', stroke: 'rgba(228,240,236,0.2)' },
     mine:  { fill: 'rgba(0,212,160,0.18)',   stroke: 'rgba(0,212,160,0.6)' },
   }
-
   return (
     <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ display: 'block', opacity: 0.9 }}>
-      {/* Cabecera calendario */}
       <rect x={4} y={0} width={88} height={14} rx="2"
         fill="rgba(0,212,160,0.12)" stroke="rgba(0,212,160,0.35)" strokeWidth="1" />
-      <text x={48} y={10} textAnchor="middle" fontSize="7" fill="rgba(0,212,160,0.8)" fontFamily="monospace">
-        Reservas
-      </text>
-
-      {/* Celdas */}
+      <text x={48} y={10} textAnchor="middle" fontSize="7" fill="rgba(0,212,160,0.8)" fontFamily="monospace">Reservas</text>
       {days.map((d, i) => (
         <g key={i}>
           <rect x={d.x} y={d.y} width={22} height={20} rx="2"
-            fill={colorMap[d.status].fill}
-            stroke={colorMap[d.status].stroke}
-            strokeWidth="1"
-          />
+            fill={colorMap[d.status].fill} stroke={colorMap[d.status].stroke} strokeWidth="1" />
           {d.status === 'mine' && (
             <text x={d.x + 11} y={d.y + 13} textAnchor="middle" fontSize="8"
               fill="rgba(0,212,160,0.9)" fontFamily="monospace">✓</text>
@@ -142,22 +134,16 @@ function SvgReservas() {
           )}
         </g>
       ))}
-
-      {/* Panel lateral usuario */}
       <rect x={100} y={20} width={36} height={76} rx="2"
         fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,160,0.15)" strokeWidth="1" />
-      {/* Avatar */}
       <circle cx={118} cy={34} r={8}
         fill="rgba(0,212,160,0.1)" stroke="rgba(0,212,160,0.3)" strokeWidth="1" />
       <text x={118} y={38} textAnchor="middle" fontSize="8"
         fill="rgba(0,212,160,0.6)" fontFamily="monospace">U</text>
-      {/* Líneas info */}
       {[52, 62, 72, 82].map((y, i) => (
         <rect key={i} x={104} y={y} width={i % 2 === 0 ? 28 : 20} height={3} rx="1.5"
           fill="rgba(228,240,236,0.1)" />
       ))}
-
-      {/* Leyenda */}
       <circle cx={8}  cy={112} r={3} fill="rgba(0,212,160,0.18)" stroke="rgba(0,212,160,0.6)" strokeWidth="1" />
       <text x={14} y={115} fontSize="6.5" fill="rgba(228,240,236,0.4)" fontFamily="monospace">Mi reserva</text>
       <circle cx={70} cy={112} r={3} fill="rgba(228,240,236,0.07)" stroke="rgba(228,240,236,0.2)" strokeWidth="1" />
@@ -169,13 +155,12 @@ function SvgReservas() {
 function SvgMotoGP() {
   const w = 130
   const h = 80
-
   return (
     <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ display: 'block', opacity: 0.85 }}>
       <circle cx="30" cy="58" r="16" fill="none" stroke="rgba(0,212,160,0.45)" strokeWidth="1.5" />
-      <circle cx="30" cy="58" r="6" fill="none" stroke="rgba(0,212,160,0.2)" strokeWidth="1" />
+      <circle cx="30" cy="58" r="6"  fill="none" stroke="rgba(0,212,160,0.2)"  strokeWidth="1" />
       <circle cx="100" cy="58" r="16" fill="none" stroke="rgba(0,212,160,0.45)" strokeWidth="1.5" />
-      <circle cx="100" cy="58" r="6" fill="none" stroke="rgba(0,212,160,0.2)" strokeWidth="1" />
+      <circle cx="100" cy="58" r="6"  fill="none" stroke="rgba(0,212,160,0.2)"  strokeWidth="1" />
       <path d="M30 58 L48 34 L88 28 L100 58" fill="none" stroke="rgba(228,240,236,0.3)" strokeWidth="1.5" strokeLinecap="round" />
       <path d="M60 30 Q80 18 96 34" fill="none" stroke="rgba(0,212,160,0.5)" strokeWidth="2" strokeLinecap="round" />
       <ellipse cx="68" cy="27" rx="10" ry="7" fill="rgba(0,212,160,0.08)" stroke="rgba(0,212,160,0.25)" strokeWidth="1" />
@@ -233,73 +218,56 @@ function ProjectCard({ project, index, visible }) {
 
   return (
     <div
+      className="project-card-wrapper"
       style={{
         display: 'flex',
         alignItems: 'flex-start',
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(20px)',
-        transition: `opacity 0.4s ease ${index * 0.08}s, transform 0.4s ease ${index * 0.08}s`,
-        pointerEvents: visible ? 'auto' : 'none',
         maxHeight: visible ? '600px' : '0',
         overflow: visible ? 'visible' : 'hidden',
+        pointerEvents: visible ? 'auto' : 'none',
+        transition: `max-height 0.4s ease ${index * 0.08}s`,
       }}
     >
       {/* Año + punto */}
       <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '80px',
-        flexShrink: 0,
-        paddingTop: '1.6rem',
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', width: '80px',
+        flexShrink: 0, paddingTop: '1.6rem',
       }}>
         <span style={{
-          fontSize: '0.75rem',
-          letterSpacing: '0.1em',
-          color: 'var(--accent)',
-          fontWeight: 500,
-          marginBottom: '0.6rem',
+          fontSize: '0.75rem', letterSpacing: '0.1em',
+          color: 'var(--accent)', fontWeight: 500, marginBottom: '0.6rem',
         }}>
           {project.year}
         </span>
         <div style={{
-          width: '10px',
-          height: '10px',
-          borderRadius: '50%',
+          width: '10px', height: '10px', borderRadius: '50%',
           background: hovered ? 'var(--accent)' : 'var(--bg-card)',
           border: '2px solid var(--accent)',
-          transition: 'background 0.2s',
-          flexShrink: 0,
-          zIndex: 1,
+          transition: 'background 0.2s', flexShrink: 0, zIndex: 1,
         }} />
       </div>
 
       {/* Card */}
       <div
+        onClick={() => window.open(project.github, '_blank', 'noreferrer')}
         style={{
-          flex: 1,
-          marginLeft: '2rem',
-          marginBottom: '2rem',
+          flex: 1, marginLeft: '2rem', marginBottom: '2rem',
           background: hovered ? 'var(--bg-card-hover)' : 'var(--bg-card)',
           border: `1px solid ${hovered ? 'var(--accent)' : 'var(--accent-border)'}`,
-          borderRadius: '4px',
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'row',
+          borderRadius: '4px', overflow: 'hidden',
+          display: 'flex', flexDirection: 'row',
           transition: 'background 0.2s, border-color 0.2s, transform 0.2s',
           transform: hovered ? 'translateX(6px)' : 'translateX(0)',
-          cursor: 'default',
+          cursor: 'pointer',
         }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
         {/* Contenido */}
         <div style={{
-          flex: 1,
-          padding: '1.4rem 1.6rem',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.8rem',
+          flex: 1, padding: '1.4rem 1.6rem',
+          display: 'flex', flexDirection: 'column', gap: '0.8rem',
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.75rem', color: 'var(--fg-muted)' }}>
@@ -310,11 +278,10 @@ function ProjectCard({ project, index, visible }) {
                 href={project.github}
                 target="_blank"
                 rel="noreferrer"
+                onClick={e => e.stopPropagation()}
                 style={{
                   color: githubHovered ? 'var(--accent)' : 'var(--fg-muted)',
-                  fontSize: '0.82rem',
-                  transition: 'color 0.2s',
-                  textDecoration: 'none',
+                  fontSize: '0.82rem', transition: 'color 0.2s', textDecoration: 'none',
                 }}
                 onMouseEnter={() => setGithubHovered(true)}
                 onMouseLeave={() => setGithubHovered(false)}
@@ -326,11 +293,10 @@ function ProjectCard({ project, index, visible }) {
                   href={project.demo}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={e => e.stopPropagation()}
                   style={{
                     color: demoHovered ? 'var(--accent)' : 'var(--fg-muted)',
-                    fontSize: '0.82rem',
-                    transition: 'color 0.2s',
-                    textDecoration: 'none',
+                    fontSize: '0.82rem', transition: 'color 0.2s', textDecoration: 'none',
                   }}
                   onMouseEnter={() => setDemoHovered(true)}
                   onMouseLeave={() => setDemoHovered(false)}
@@ -354,10 +320,8 @@ function ProjectCard({ project, index, visible }) {
               <span key={tag} style={{
                 padding: '0.25rem 0.75rem',
                 border: '1px solid var(--accent-border)',
-                borderRadius: '2px',
-                fontSize: '0.72rem',
-                letterSpacing: '0.08em',
-                color: 'var(--accent)',
+                borderRadius: '2px', fontSize: '0.72rem',
+                letterSpacing: '0.08em', color: 'var(--accent)',
               }}>
                 {tag}
               </span>
@@ -367,13 +331,9 @@ function ProjectCard({ project, index, visible }) {
 
         {/* SVG a la derecha */}
         <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '1.2rem',
-          borderLeft: '1px solid var(--accent-border)',
-          background: 'rgba(0,0,0,0.1)',
-          flexShrink: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '1.2rem', borderLeft: '1px solid var(--accent-border)',
+          background: 'rgba(0,0,0,0.1)', flexShrink: 0,
         }}>
           <Svg />
         </div>
@@ -382,23 +342,37 @@ function ProjectCard({ project, index, visible }) {
   )
 }
 
-export default function Projects() {
+export default function Projects({ compact = false }) {
   const [expanded, setExpanded] = useState(false)
-  const [btnHovered, setBtnHovered] = useState(false)
+  const containerRef = useRef(null)
   const hiddenCount = projects.length - INITIAL_COUNT
 
+  useGSAP(() => {
+    ScrollTrigger.batch('.project-card-wrapper', {
+      onEnter: batch => gsap.from(batch, {
+        opacity: 0,
+        y: 30,
+        stagger: 0.1,
+        duration: 0.65,
+        ease: 'power3.out',
+      }),
+      start: 'top 88%',
+      once: true,
+    })
+  }, { scope: containerRef })
+
   return (
-    <section id="projects" style={{ padding: '8rem 2.5rem', background: 'var(--bg-dark)' }}>
-      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+    <section
+      id={compact ? undefined : 'projects'}
+      style={compact ? {} : { padding: '8rem 2.5rem', background: 'var(--bg-dark)' }}
+    >
+      <div ref={containerRef} style={{ maxWidth: '900px', margin: '0 auto' }}>
 
         <div style={{ marginBottom: '4rem' }}>
           <p style={{
-            color: 'var(--accent)',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            fontSize: '0.8rem',
-            marginBottom: '1rem',
-            fontWeight: 500,
+            color: 'var(--accent)', letterSpacing: '0.2em',
+            textTransform: 'uppercase', fontSize: '0.8rem',
+            marginBottom: '1rem', fontWeight: 500,
           }}>
             Portafolio
           </p>
@@ -409,14 +383,9 @@ export default function Projects() {
 
         <div style={{ position: 'relative' }}>
           <div style={{
-            position: 'absolute',
-            left: '84px',
-            top: 0,
-            bottom: 0,
-            width: '1px',
-            background: 'var(--accent-border)',
+            position: 'absolute', left: '84px', top: 0, bottom: 0,
+            width: '1px', background: 'var(--accent-border)',
           }} />
-
           {projects.map((project, i) => (
             <ProjectCard
               key={i}
@@ -431,28 +400,27 @@ export default function Projects() {
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
             <button
               onClick={() => setExpanded(!expanded)}
-              onMouseEnter={() => setBtnHovered(true)}
-              onMouseLeave={() => setBtnHovered(false)}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.6rem',
-                padding: '0.75rem 2rem',
-                background: 'transparent',
-                border: `1px solid ${btnHovered ? 'var(--accent)' : 'var(--accent-border)'}`,
-                borderRadius: '2px',
-                color: btnHovered ? 'var(--accent)' : 'var(--fg-muted)',
-                fontSize: '0.85rem',
-                letterSpacing: '0.08em',
-                cursor: 'pointer',
-                transition: 'color 0.2s, border-color 0.2s',
+                display: 'flex', alignItems: 'center', gap: '0.6rem',
+                padding: '0.75rem 2rem', background: 'transparent',
+                border: '1px solid var(--accent-border)',
+                borderRadius: '2px', color: 'var(--fg-muted)',
+                fontSize: '0.85rem', letterSpacing: '0.08em',
+                cursor: 'pointer', transition: 'color 0.2s, border-color 0.2s',
                 fontFamily: 'var(--font-body)',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.color = 'var(--accent)'
+                e.currentTarget.style.borderColor = 'var(--accent)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.color = 'var(--fg-muted)'
+                e.currentTarget.style.borderColor = 'var(--accent-border)'
               }}
             >
               <span>{expanded ? 'Ver menos' : `Ver ${hiddenCount} proyecto${hiddenCount > 1 ? 's' : ''} más`}</span>
               <span style={{
-                display: 'inline-block',
-                transition: 'transform 0.3s ease',
+                display: 'inline-block', transition: 'transform 0.3s ease',
                 transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
               }}>
                 ↓
@@ -460,7 +428,6 @@ export default function Projects() {
             </button>
           </div>
         )}
-
       </div>
     </section>
   )
