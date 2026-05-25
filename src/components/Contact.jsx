@@ -9,7 +9,7 @@ function SocialLink({ href, label }) {
       target="_blank"
       rel="noreferrer"
       style={{
-        color: hovered ? 'var(--fg)' : 'var(--text-muted)',
+        color: hovered ? 'var(--fg)' : 'var(--fg-muted)',
         fontSize: '0.85rem',
         letterSpacing: '0.1em',
         textDecoration: 'none',
@@ -44,11 +44,12 @@ export default function Contact() {
       <div style={{ maxWidth: '700px', margin: '0 auto' }}>
         <p
           style={{
-            color: 'var(--text-muted)',
+            color: 'var(--accent)',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
             fontSize: '0.8rem',
             marginBottom: '1rem',
+            fontWeight: 500,
           }}
         >
           Contacto
@@ -59,6 +60,7 @@ export default function Contact() {
             fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
             lineHeight: 1.05,
             marginBottom: '1.5rem',
+            color: 'var(--fg)',
           }}
         >
           ¿Hablamos?
@@ -66,7 +68,7 @@ export default function Contact() {
 
         <p
           style={{
-            color: 'var(--text-muted)',
+            color: 'var(--fg-muted)',
             fontSize: '1.05rem',
             lineHeight: 1.9,
             marginBottom: '3rem',
@@ -81,15 +83,14 @@ export default function Contact() {
           style={{
             display: 'inline-block',
             padding: '1rem 3rem',
-            background: 'var(--fg)',
-            color: 'var(--bg)',
+            background: btnHovered ? '#d4541f' : 'var(--accent)',
+            color: 'var(--fg)',
             fontFamily: 'var(--font-body)',
             fontWeight: 500,
             fontSize: '1rem',
             borderRadius: '2px',
             textDecoration: 'none',
-            transition: 'opacity 0.2s',
-            opacity: btnHovered ? 0.85 : 1,
+            transition: 'background 0.2s',
             marginBottom: '4rem',
           }}
           onMouseEnter={() => setBtnHovered(true)}
@@ -103,7 +104,7 @@ export default function Contact() {
             display: 'flex',
             justifyContent: 'center',
             gap: '2.5rem',
-            borderTop: '1px solid var(--accent-border)',
+            borderTop: '1px solid var(--border)',
             paddingTop: '2.5rem',
           }}
         >
@@ -114,7 +115,7 @@ export default function Contact() {
 
         <p
           style={{
-            color: 'var(--text-muted)',
+            color: 'var(--fg-subtle)',
             fontSize: '0.8rem',
             marginTop: '3rem',
             letterSpacing: '0.05em',

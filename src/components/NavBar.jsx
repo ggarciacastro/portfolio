@@ -8,9 +8,9 @@ function NavLink({ href, label }) {
       <a
         href={href}
         style={{
-          color: hovered ? 'var(--fg)' : 'var(--text-muted)',
-          fontSize: '0.9rem',
-          letterSpacing: '0.08em',
+          color: hovered ? 'var(--fg)' : 'var(--fg-muted)',
+          fontSize: '0.85rem',
+          letterSpacing: '0.1em',
           textTransform: 'uppercase',
           textDecoration: 'none',
           transition: 'color 0.2s',
@@ -47,13 +47,13 @@ export default function Navbar() {
         top: 0,
         width: '100%',
         zIndex: 100,
-        padding: '1rem 2.5rem',
+        padding: '1.2rem 2.5rem',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
         transition: 'all 0.3s ease',
-        background: scrolled ? 'rgba(74, 10, 21, 0.95)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
+        background: scrolled ? 'rgba(9, 20, 34, 0.92)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(16px)' : 'none',
         borderBottom: scrolled ? '1px solid var(--accent-border)' : 'none',
       }}
     >
@@ -65,7 +65,6 @@ export default function Navbar() {
           fontWeight: 900,
           color: 'var(--fg)',
           letterSpacing: '0.02em',
-          textDecoration: 'none',
         }}
       >
         Tu Nombre

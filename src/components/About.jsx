@@ -59,7 +59,7 @@ export default function About() {
             lineHeight: 1.1,
             marginBottom: '2rem',
           }}>
-            Código con<br/>criterio.
+            Del código<br/>al dato.
           </h2>
 
           <p style={{
@@ -67,8 +67,7 @@ export default function About() {
             marginBottom: '1.2rem',
             lineHeight: 1.9,
           }}>
-            Soy ingeniero informático especializado en desarrollo de software. Me apasiona
-            crear soluciones eficientes, bien estructuradas y pensadas para el usuario final.
+            Ingeniero de software fullstack con base sólida en arquitectura y adaptación rápida a nuevos lenguajes y tecnologías.
           </p>
 
           <p style={{
@@ -76,8 +75,7 @@ export default function About() {
             marginBottom: '2.5rem',
             lineHeight: 1.9,
           }}>
-            Tengo experiencia en desarrollo web fullstack, diseño de arquitecturas
-            de software y colaboración en equipos ágiles. Siempre aprendiendo.
+            Especializándome en big data e IA aplicada al análisis de datos biomédicos, con el objetivo de crear soluciones con impacto real en la salud.
           </p>
 
           <div style={{

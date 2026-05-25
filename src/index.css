@@ -7,16 +7,24 @@
 }
 
 :root {
-  --bg: #6B0E1E;
-  --fg: #F5DE8D;
-  --bg-dark: #4A0A15;
-  --bg-card: #7d1224;
-  --accent: #F5DE8D;
-  --accent-dim: rgba(245, 222, 141, 0.15);
-  --accent-border: rgba(245, 222, 141, 0.25);
-  --text-muted: rgba(245, 222, 141, 0.6);
+  --bg:            #0D1B2A;
+  --bg-dark:       #091422;
+  --bg-card:       #152336;
+  --bg-card-hover: #1C2D43;
+
+  --fg:            #E4F0EC;
+  --fg-muted:      rgba(228, 240, 236, 0.5);
+  --fg-subtle:     rgba(228, 240, 236, 0.15);
+
+  --accent:        #00D4A0;
+  --accent-dim:    rgba(0, 212, 160, 0.1);
+  --accent-border: rgba(0, 212, 160, 0.3);
+
+  --border:        rgba(228, 240, 236, 0.08);
+  --border-hover:  rgba(228, 240, 236, 0.18);
+
   --font-display: 'Playfair Display', serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
 }
 
 html {
@@ -35,6 +43,7 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 700;
+  color: var(--fg);
 }
 
 a {
@@ -46,8 +55,12 @@ ul {
   list-style: none;
 }
 
+p {
+  color: var(--fg-muted);
+}
+
 ::selection {
-  background: var(--fg);
+  background: var(--accent);
   color: var(--bg);
 }
 

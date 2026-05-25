@@ -31,27 +31,41 @@ export default function Hero() {
         overflow: 'hidden',
       }}
     >
+      {/* Círculos decorativos */}
       <div
         style={{
           position: 'absolute',
-          top: '-10rem',
-          right: '-10rem',
-          width: '40rem',
-          height: '40rem',
+          top: '-12rem',
+          right: '-12rem',
+          width: '45rem',
+          height: '45rem',
           borderRadius: '50%',
-          border: '1px solid var(--accent-border)',
+          border: '1px solid var(--border)',
           pointerEvents: 'none',
         }}
       />
       <div
         style={{
           position: 'absolute',
-          top: '-5rem',
-          right: '-5rem',
-          width: '25rem',
-          height: '25rem',
+          top: '-6rem',
+          right: '-6rem',
+          width: '28rem',
+          height: '28rem',
           borderRadius: '50%',
-          border: '1px solid var(--accent-border)',
+          border: '1px solid var(--border)',
+          pointerEvents: 'none',
+        }}
+      />
+      {/* Punto de acento */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '20%',
+          left: '5%',
+          width: '6px',
+          height: '6px',
+          borderRadius: '50%',
+          background: 'var(--accent)',
           pointerEvents: 'none',
         }}
       />
@@ -59,11 +73,12 @@ export default function Hero() {
       <div ref={titleRef} style={{ maxWidth: '900px' }}>
         <p
           style={{
-            color: 'var(--text-muted)',
+            color: 'var(--accent)',
             letterSpacing: '0.2em',
             textTransform: 'uppercase',
-            fontSize: '0.85rem',
-            marginBottom: '1rem',
+            fontSize: '0.8rem',
+            marginBottom: '1.2rem',
+            fontWeight: 500,
           }}
         >
           👋 Hola, soy
@@ -75,9 +90,10 @@ export default function Hero() {
             lineHeight: 1.05,
             marginBottom: '1.5rem',
             fontWeight: 900,
+            color: 'var(--fg)',
           }}
         >
-          Tu Nombre
+          Gonzalo García Castro
         </h1>
 
         <h2
@@ -85,7 +101,7 @@ export default function Hero() {
             fontSize: 'clamp(1.2rem, 3vw, 2rem)',
             fontFamily: 'var(--font-body)',
             fontWeight: 300,
-            color: 'var(--text-muted)',
+            color: 'var(--fg-muted)',
             marginBottom: '2.5rem',
           }}
         >
@@ -95,31 +111,27 @@ export default function Hero() {
         <p
           style={{
             maxWidth: '540px',
-            color: 'var(--text-muted)',
+            color: 'var(--fg-muted)',
             fontSize: '1.05rem',
             marginBottom: '3rem',
-            lineHeight: 1.8,
+            lineHeight: 1.9,
           }}
         >
-          Apasionado por construir software limpio, escalable y con propósito.
-          Especializado en desarrollo web y aplicaciones de escritorio.
-        </p>
+            Ingeniero de software con base sólida en arquitectura de sistemas y desarrollo fullstack, especializándome en análisis de datos masivos e inteligencia artificial.        </p>
 
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <a
             href="#projects"
             style={{
               padding: '0.85rem 2.2rem',
-              background: 'var(--fg)',
-              color: 'var(--bg)',
+              background: primaryHover ? '#d4541f' : 'var(--accent)',
+              color: 'var(--fg)',
               fontFamily: 'var(--font-body)',
               fontWeight: 500,
               fontSize: '0.9rem',
               letterSpacing: '0.05em',
               borderRadius: '2px',
-              textDecoration: 'none',
-              transition: 'opacity 0.2s',
-              opacity: primaryHover ? 0.85 : 1,
+              transition: 'background 0.2s',
             }}
             onMouseEnter={() => setPrimaryHover(true)}
             onMouseLeave={() => setPrimaryHover(false)}
@@ -130,16 +142,16 @@ export default function Hero() {
             href="#contact"
             style={{
               padding: '0.85rem 2.2rem',
-              border: '1px solid var(--accent-border)',
+              border: '1px solid var(--border-hover)',
               color: 'var(--fg)',
               fontFamily: 'var(--font-body)',
               fontWeight: 300,
               fontSize: '0.9rem',
               letterSpacing: '0.05em',
               borderRadius: '2px',
-              textDecoration: 'none',
-              transition: 'background 0.2s',
-              background: secondaryHover ? 'var(--accent-dim)' : 'transparent',
+              transition: 'background 0.2s, border-color 0.2s',
+              background: secondaryHover ? 'var(--bg-card)' : 'transparent',
+              borderColor: secondaryHover ? 'var(--accent-border)' : 'var(--border-hover)',
             }}
             onMouseEnter={() => setSecondaryHover(true)}
             onMouseLeave={() => setSecondaryHover(false)}
@@ -149,6 +161,7 @@ export default function Hero() {
         </div>
       </div>
 
+      {/* Scroll hint */}
       <div
         style={{
           position: 'absolute',
@@ -159,9 +172,9 @@ export default function Hero() {
           flexDirection: 'column',
           alignItems: 'center',
           gap: '0.5rem',
-          color: 'var(--text-muted)',
-          fontSize: '0.75rem',
-          letterSpacing: '0.15em',
+          color: 'var(--fg-muted)',
+          fontSize: '0.7rem',
+          letterSpacing: '0.2em',
           textTransform: 'uppercase',
         }}
       >
@@ -170,7 +183,7 @@ export default function Hero() {
           style={{
             width: '1px',
             height: '50px',
-            background: 'linear-gradient(to bottom, var(--text-muted), transparent)',
+            background: 'linear-gradient(to bottom, var(--fg-muted), transparent)',
           }}
         />
       </div>
