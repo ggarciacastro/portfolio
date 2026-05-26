@@ -11,7 +11,7 @@ function SocialLink({ href, label }) {
       target="_blank"
       rel="noreferrer"
       style={{
-        color: hovered ? 'var(--accent)' : 'var(--fg-muted)',
+        color: hovered ? 'var(--rose)' : 'var(--fg-muted)',
         fontSize: '0.85rem', letterSpacing: '0.1em',
         textDecoration: 'none', transition: 'color 0.2s',
       }}
@@ -51,7 +51,7 @@ export default function Contact() {
     >
       <div style={{ maxWidth: '700px', margin: '0 auto' }}>
         <p className="contact-animate" style={{
-          color: 'var(--accent)', letterSpacing: '0.2em',
+          color: 'var(--amber)', letterSpacing: '0.2em',
           textTransform: 'uppercase', fontSize: '0.8rem',
           marginBottom: '1rem', fontWeight: 500,
         }}>

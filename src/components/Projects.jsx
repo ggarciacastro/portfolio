@@ -61,35 +61,35 @@ function SvgCompiler() {
   return (
     <svg width={totalW} height={totalH} viewBox={`0 0 ${totalW} ${totalH}`} style={{ display: 'block', opacity: 0.9 }}>
       <rect x={20} y={0} width={100} height={18} rx="2"
-        fill="rgba(0,212,160,0.1)" stroke="rgba(0,212,160,0.4)" strokeWidth="1" />
-      <text x={70} y={12} textAnchor="middle" fontSize="7.5" fill="rgba(0,212,160,0.8)" fontFamily="monospace">
+        fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.4)" strokeWidth="1" />
+      <text x={70} y={12} textAnchor="middle" fontSize="7.5" fill="rgba(167,139,250,0.8)" fontFamily="monospace">
         Python-- input
       </text>
-      <line x1={70} y1={18} x2={70} y2={26} stroke="rgba(0,212,160,0.3)" strokeWidth="1" />
-      <polygon points="67,26 73,26 70,30" fill="rgba(0,212,160,0.3)" />
+      <line x1={70} y1={18} x2={70} y2={26} stroke="rgba(167,139,250,0.3)" strokeWidth="1" />
+      <polygon points="67,26 73,26 70,30" fill="rgba(167,139,250,0.3)" />
       {stages.map((label, i) => {
         const y = 30 + i * (boxH + gap)
         return (
           <g key={label}>
             <rect x={20} y={y} width={100} height={boxH} rx="2"
-              fill="rgba(255,255,255,0.04)" stroke="rgba(0,212,160,0.2)" strokeWidth="1" />
+              fill="rgba(255,255,255,0.04)" stroke="rgba(167,139,250,0.2)" strokeWidth="1" />
             <text x={70} y={y + 13} textAnchor="middle" fontSize="7.5"
               fill="rgba(228,240,236,0.6)" fontFamily="monospace">{label}</text>
             {i < stages.length - 1 && (
               <>
-                <line x1={70} y1={y + boxH} x2={70} y2={y + boxH + gap - 2} stroke="rgba(0,212,160,0.25)" strokeWidth="1" />
-                <polygon points={`67,${y + boxH + gap - 2} 73,${y + boxH + gap - 2} 70,${y + boxH + gap + 2}`} fill="rgba(0,212,160,0.25)" />
+                <line x1={70} y1={y + boxH} x2={70} y2={y + boxH + gap - 2} stroke="rgba(167,139,250,0.25)" strokeWidth="1" />
+                <polygon points={`67,${y + boxH + gap - 2} 73,${y + boxH + gap - 2} 70,${y + boxH + gap + 2}`} fill="rgba(167,139,250,0.25)" />
               </>
             )}
           </g>
         )
       })}
-      <line x1={70} y1={30 + stages.length * (boxH + gap) - gap} x2={70} y2={30 + stages.length * (boxH + gap) - gap + 6} stroke="rgba(0,212,160,0.3)" strokeWidth="1" />
-      <polygon points={`67,${30 + stages.length * (boxH + gap) - gap + 6} 73,${30 + stages.length * (boxH + gap) - gap + 6} 70,${30 + stages.length * (boxH + gap) - gap + 10}`} fill="rgba(0,212,160,0.3)" />
+      <line x1={70} y1={30 + stages.length * (boxH + gap) - gap} x2={70} y2={30 + stages.length * (boxH + gap) - gap + 6} stroke="rgba(167,139,250,0.3)" strokeWidth="1" />
+      <polygon points={`67,${30 + stages.length * (boxH + gap) - gap + 6} 73,${30 + stages.length * (boxH + gap) - gap + 6} 70,${30 + stages.length * (boxH + gap) - gap + 10}`} fill="rgba(167,139,250,0.3)" />
       <rect x={20} y={30 + stages.length * (boxH + gap) - gap + 10} width={100} height={18} rx="2"
-        fill="rgba(0,212,160,0.12)" stroke="rgba(0,212,160,0.5)" strokeWidth="1" />
+        fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.5)" strokeWidth="1" />
       <text x={70} y={30 + stages.length * (boxH + gap) - gap + 22} textAnchor="middle" fontSize="7.5"
-        fill="rgba(0,212,160,0.9)" fontFamily="monospace">MAPL output</text>
+        fill="rgba(167,139,250,0.9)" fontFamily="monospace">MAPL output</text>
     </svg>
   )
 }
@@ -109,22 +109,22 @@ function SvgReservas() {
     { x: 66,  y: 76, status: 'taken' },
   ]
   const colorMap = {
-    free:  { fill: 'rgba(255,255,255,0.04)', stroke: 'rgba(0,212,160,0.15)' },
+    free:  { fill: 'rgba(255,255,255,0.04)', stroke: 'rgba(167,139,250,0.15)' },
     taken: { fill: 'rgba(228,240,236,0.07)', stroke: 'rgba(228,240,236,0.2)' },
-    mine:  { fill: 'rgba(0,212,160,0.18)',   stroke: 'rgba(0,212,160,0.6)' },
+    mine:  { fill: 'rgba(167,139,250,0.18)',   stroke: 'rgba(167,139,250,0.6)' },
   }
   return (
     <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ display: 'block', opacity: 0.9 }}>
       <rect x={4} y={0} width={88} height={14} rx="2"
-        fill="rgba(0,212,160,0.12)" stroke="rgba(0,212,160,0.35)" strokeWidth="1" />
-      <text x={48} y={10} textAnchor="middle" fontSize="7" fill="rgba(0,212,160,0.8)" fontFamily="monospace">Reservas</text>
+        fill="rgba(167,139,250,0.12)" stroke="rgba(167,139,250,0.35)" strokeWidth="1" />
+      <text x={48} y={10} textAnchor="middle" fontSize="7" fill="rgba(167,139,250,0.8)" fontFamily="monospace">Reservas</text>
       {days.map((d, i) => (
         <g key={i}>
           <rect x={d.x} y={d.y} width={22} height={20} rx="2"
             fill={colorMap[d.status].fill} stroke={colorMap[d.status].stroke} strokeWidth="1" />
           {d.status === 'mine' && (
             <text x={d.x + 11} y={d.y + 13} textAnchor="middle" fontSize="8"
-              fill="rgba(0,212,160,0.9)" fontFamily="monospace">✓</text>
+              fill="rgba(167,139,250,0.9)" fontFamily="monospace">✓</text>
           )}
           {d.status === 'taken' && (
             <line x1={d.x + 4} y1={d.y + 10} x2={d.x + 18} y2={d.y + 10}
@@ -133,16 +133,16 @@ function SvgReservas() {
         </g>
       ))}
       <rect x={100} y={20} width={36} height={76} rx="2"
-        fill="rgba(255,255,255,0.03)" stroke="rgba(0,212,160,0.15)" strokeWidth="1" />
+        fill="rgba(255,255,255,0.03)" stroke="rgba(167,139,250,0.15)" strokeWidth="1" />
       <circle cx={118} cy={34} r={8}
-        fill="rgba(0,212,160,0.1)" stroke="rgba(0,212,160,0.3)" strokeWidth="1" />
+        fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.3)" strokeWidth="1" />
       <text x={118} y={38} textAnchor="middle" fontSize="8"
-        fill="rgba(0,212,160,0.6)" fontFamily="monospace">U</text>
+        fill="rgba(167,139,250,0.6)" fontFamily="monospace">U</text>
       {[52, 62, 72, 82].map((y, i) => (
         <rect key={i} x={104} y={y} width={i % 2 === 0 ? 28 : 20} height={3} rx="1.5"
           fill="rgba(228,240,236,0.1)" />
       ))}
-      <circle cx={8}  cy={112} r={3} fill="rgba(0,212,160,0.18)" stroke="rgba(0,212,160,0.6)" strokeWidth="1" />
+      <circle cx={8}  cy={112} r={3} fill="rgba(167,139,250,0.18)" stroke="rgba(167,139,250,0.6)" strokeWidth="1" />
       <text x={14} y={115} fontSize="6.5" fill="rgba(228,240,236,0.4)" fontFamily="monospace">Mi reserva</text>
       <circle cx={70} cy={112} r={3} fill="rgba(228,240,236,0.07)" stroke="rgba(228,240,236,0.2)" strokeWidth="1" />
       <text x={76} y={115} fontSize="6.5" fill="rgba(228,240,236,0.4)" fontFamily="monospace">Ocupado</text>
@@ -155,14 +155,14 @@ function SvgMotoGP() {
   const h = 80
   return (
     <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ display: 'block', opacity: 0.85 }}>
-      <circle cx="30" cy="58" r="16" fill="none" stroke="rgba(0,212,160,0.45)" strokeWidth="1.5" />
-      <circle cx="30" cy="58" r="6"  fill="none" stroke="rgba(0,212,160,0.2)"  strokeWidth="1" />
-      <circle cx="100" cy="58" r="16" fill="none" stroke="rgba(0,212,160,0.45)" strokeWidth="1.5" />
-      <circle cx="100" cy="58" r="6"  fill="none" stroke="rgba(0,212,160,0.2)"  strokeWidth="1" />
+      <circle cx="30" cy="58" r="16" fill="none" stroke="rgba(167,139,250,0.45)" strokeWidth="1.5" />
+      <circle cx="30" cy="58" r="6"  fill="none" stroke="rgba(167,139,250,0.2)"  strokeWidth="1" />
+      <circle cx="100" cy="58" r="16" fill="none" stroke="rgba(167,139,250,0.45)" strokeWidth="1.5" />
+      <circle cx="100" cy="58" r="6"  fill="none" stroke="rgba(167,139,250,0.2)"  strokeWidth="1" />
       <path d="M30 58 L48 34 L88 28 L100 58" fill="none" stroke="rgba(228,240,236,0.3)" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M60 30 Q80 18 96 34" fill="none" stroke="rgba(0,212,160,0.5)" strokeWidth="2" strokeLinecap="round" />
-      <ellipse cx="68" cy="27" rx="10" ry="7" fill="rgba(0,212,160,0.08)" stroke="rgba(0,212,160,0.25)" strokeWidth="1" />
-      <line x1="4" y1="58" x2="18" y2="58" stroke="rgba(0,212,160,0.2)" strokeWidth="1" strokeDasharray="3 3" />
+      <path d="M60 30 Q80 18 96 34" fill="none" stroke="rgba(167,139,250,0.5)" strokeWidth="2" strokeLinecap="round" />
+      <ellipse cx="68" cy="27" rx="10" ry="7" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.25)" strokeWidth="1" />
+      <line x1="4" y1="58" x2="18" y2="58" stroke="rgba(167,139,250,0.2)" strokeWidth="1" strokeDasharray="3 3" />
     </svg>
   )
 }
@@ -234,7 +234,7 @@ function ProjectCard({ project, index, visible }) {
       }}>
         <span style={{
           fontSize: '0.75rem', letterSpacing: '0.1em',
-          color: 'var(--accent)', fontWeight: 500, marginBottom: '0.6rem',
+          color: 'var(--amber)', fontWeight: 500, marginBottom: '0.6rem',
         }}>
           {project.year}
         </span>
@@ -317,9 +317,9 @@ function ProjectCard({ project, index, visible }) {
             {project.tags.map(tag => (
               <span key={tag} style={{
                 padding: '0.25rem 0.75rem',
-                border: '1px solid var(--accent-border)',
+                border: '1px solid var(--rose-border)',
                 borderRadius: '2px', fontSize: '0.72rem',
-                letterSpacing: '0.08em', color: 'var(--accent)',
+                letterSpacing: '0.08em', color: 'var(--rose)',
               }}>
                 {tag}
               </span>
@@ -368,7 +368,7 @@ export default function Projects({ compact = false }) {
 
         <div style={{ marginBottom: '4rem' }}>
           <p style={{
-            color: 'var(--accent)', letterSpacing: '0.2em',
+            color: 'var(--amber)', letterSpacing: '0.2em',
             textTransform: 'uppercase', fontSize: '0.8rem',
             marginBottom: '1rem', fontWeight: 500,
           }}>

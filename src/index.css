@@ -23,6 +23,12 @@
   --border:        rgba(237, 233, 255, 0.08);
   --border-hover:  rgba(237, 233, 255, 0.18);
 
+  /* Acentos secundarios */
+  --amber:         #FBBF24;
+  --amber-border:  rgba(251, 191, 36, 0.28);
+  --rose:          #F472B6;
+  --rose-border:   rgba(244, 114, 182, 0.28);
+
   --font-display: 'Playfair Display', serif;
   --font-body:    'DM Sans', sans-serif;
 }

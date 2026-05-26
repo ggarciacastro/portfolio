@@ -69,7 +69,7 @@ export default function Hero() {
 
       <div style={{ maxWidth: '900px' }}>
         <p className="hero-eyebrow" style={{
-          color: 'var(--accent)', letterSpacing: '0.2em',
+          color: 'var(--amber)', letterSpacing: '0.2em',
           textTransform: 'uppercase', fontSize: '0.8rem',
           marginBottom: '1.2rem', fontWeight: 500,
         }}>

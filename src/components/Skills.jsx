@@ -31,7 +31,7 @@ export default function Skills() {
     }}>
       <div className="skills-header" style={{ marginBottom: '4rem' }}>
         <p style={{
-          color: 'var(--fg-muted)', letterSpacing: '0.2em',
+          color: 'var(--amber)', letterSpacing: '0.2em',
           textTransform: 'uppercase', fontSize: '0.8rem', marginBottom: '1rem',
         }}>
           Tecnologías

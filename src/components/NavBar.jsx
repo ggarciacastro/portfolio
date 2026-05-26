@@ -87,7 +87,7 @@ export default function Navbar() {
         background: 'transparent',
         backdropFilter: 'none',
         borderBottom: '1px solid transparent',
-        transition: 'background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease',
+        transition: 'background 0.3s, backdrop-filter 0.3s, border-color 0.3s',
       }}
     >
       <a

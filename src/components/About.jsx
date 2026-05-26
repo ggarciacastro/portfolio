@@ -37,7 +37,7 @@ export default function About({ compact = false }) {
       style={compact ? {} : { padding: '8rem 2.5rem', maxWidth: '1100px', margin: '0 auto' }}
     >
       <p className="about-animate" style={{
-        color: 'var(--accent)', letterSpacing: '0.2em',
+        color: 'var(--amber)', letterSpacing: '0.2em',
         textTransform: 'uppercase', fontSize: '0.78rem',
         marginBottom: '1rem', fontWeight: 500,
       }}>
@@ -87,7 +87,7 @@ export default function About({ compact = false }) {
           <div key={item.label}>
             <p style={{
               fontSize: '0.68rem', letterSpacing: '0.15em',
-              textTransform: 'uppercase', color: 'var(--accent)', marginBottom: '0.3rem',
+              textTransform: 'uppercase', color: 'var(--amber)', marginBottom: '0.3rem',
             }}>
               {item.label}
             </p>
