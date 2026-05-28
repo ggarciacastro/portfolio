@@ -35,7 +35,8 @@ export default function Contact() {
   useGSAP(() => {
     gsap.from('.contact-animate', {
       opacity: 0, y: 30, stagger: 0.1, duration: 0.7, ease: 'power3.out',
-      scrollTrigger: { trigger: containerRef.current, start: 'top 75%', once: true },
+      clearProps: 'opacity,transform',
+      scrollTrigger: { trigger: containerRef.current, start: 'top 90%', once: true },
     })
   }, { scope: containerRef })
 
@@ -83,8 +84,8 @@ export default function Contact() {
             textDecoration: 'none', transition: 'opacity 0.2s',
             marginBottom: '4rem',
           }}
-          onMouseEnter={e => e.currentTarget.style.opacity = '0.82'}
-          onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+          onMouseEnter={e => e.currentTarget.style.filter = 'brightness(0.82)'}
+          onMouseLeave={e => e.currentTarget.style.filter = 'none'}
         >
           Envíame un email
         </a>
@@ -102,7 +103,7 @@ export default function Contact() {
           color: 'var(--fg-subtle)', fontSize: '0.8rem',
           marginTop: '3rem', letterSpacing: '0.05em',
         }}>
-          © 2025 Gonzalo García Castro — Hecho con React + Vite
+          © 2026 Gonzalo García Castro
         </p>
       </div>
     </section>

@@ -4,10 +4,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 
 const skillGroups = [
-  { category: 'Frontend',       skills: ['React', 'TypeScript', 'HTML/CSS', 'Next.js', 'Tailwind'] },
-  { category: 'Backend',        skills: ['Node.js', 'Python', 'Java', 'FastAPI', 'Spring Boot'] },
-  { category: 'Bases de datos', skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis'] },
-  { category: 'Herramientas',   skills: ['Git', 'Docker', 'Linux', 'AWS', 'Figma'] },
+  { category: 'Frontend',       skills: ['React', 'TypeScript', 'HTML/CSS', 'Thymeleaf', 'Tailwind', 'Twig'] },
+  { category: 'Backend',        skills: ['Node.js', 'Python', 'Java', 'APIRest', 'Spring Boot', 'Rust'] },
+  { category: 'Bases de datos', skills: ['HSQLDB', 'MongoDB', 'MySQL', 'MariaDB', 'Oracle SQL'] },
+  { category: 'Herramientas',   skills: ['Git', 'Docker', 'Linux', 'CI/CD'] },
 ]
 
 export default function Skills() {
