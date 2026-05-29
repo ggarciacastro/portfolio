@@ -282,9 +282,19 @@ function ProjectCard({ project, index, visible, isMobile }) {
           display: 'flex', flexDirection: 'column', gap: '0.8rem',
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.75rem', color: 'var(--fg-muted)' }}>
-              0{index + 1}
-            </span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.75rem', color: 'var(--fg-muted)' }}>
+                0{index + 1}
+              </span>
+              {isMobile && (
+                <span style={{
+                  fontSize: '0.7rem', letterSpacing: '0.1em',
+                  color: 'var(--amber)', fontWeight: 500,
+                }}>
+                  {project.year}
+                </span>
+              )}
+            </div>
             <div style={{ display: 'flex', gap: '1rem' }}>
               <a
                 href={project.github}
