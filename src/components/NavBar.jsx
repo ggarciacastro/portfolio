@@ -197,6 +197,18 @@ export default function Navbar() {
           gap: '2.5rem', zIndex: 200,
           opacity: 0, pointerEvents: 'none',
         }}>
+          <button
+            onClick={closeMenu}
+            style={{
+              position: 'absolute', top: '1.2rem', right: '2.5rem',
+              background: 'none', border: 'none', cursor: 'pointer',
+              color: 'var(--fg)', fontSize: '1.8rem', lineHeight: 1,
+              padding: '4px',
+            }}
+            aria-label="Cerrar menú"
+          >
+            ✕
+          </button>
           {links.map(({ label, href }) => (
             <a
               key={href}

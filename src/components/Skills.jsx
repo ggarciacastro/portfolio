@@ -5,7 +5,7 @@ import { useGSAP } from '@gsap/react'
 
 const skillGroups = [
   { category: 'Frontend',       skills: ['React', 'TypeScript', 'HTML/CSS', 'Thymeleaf', 'Tailwind', 'Twig'] },
-  { category: 'Backend',        skills: ['Node.js', 'Python', 'Java', 'APIRest', 'Spring Boot', 'Rust'] },
+  { category: 'Backend',        skills: ['Node.js', 'Python', 'Java', 'APIRest', 'Spring Boot', 'Rust', 'C#'] },
   { category: 'Bases de datos', skills: ['HSQLDB', 'MongoDB', 'MySQL', 'MariaDB', 'Oracle SQL'] },
   { category: 'Herramientas',   skills: ['Git', 'Docker', 'Linux', 'CI/CD'] },
 ]
