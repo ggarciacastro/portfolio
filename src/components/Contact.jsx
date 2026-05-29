@@ -28,8 +28,7 @@ export default function Contact() {
 
   const socials = [
     { label: 'GitHub',   href: 'https://github.com/ggarciacastro' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/tuusuario' },
-    { label: 'Twitter/X',href: 'https://twitter.com/tuusuario' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/gonzalo-garcia-castro-412615355/' }
   ]
 
   useGSAP(() => {
