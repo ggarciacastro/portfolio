@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
@@ -123,6 +124,7 @@ export default function Navbar() {
   }
 
   return (
+    <>
     <nav ref={navRef} style={{
       position: 'fixed', top: 0, width: '100%', zIndex: 100,
       padding: '1.2rem 2.5rem',
@@ -183,17 +185,17 @@ export default function Navbar() {
         </button>
       )}
 
-      {/* ── Mobile menu overlay ── */}
-      {isMobile && (
+    </nav>
+
+      {isMobile && createPortal(
         <div ref={menuRef} style={{
-          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          position: 'fixed', inset: 0,
           background: 'rgba(9,9,18,0.97)',
           backdropFilter: 'blur(12px)',
           display: 'flex', flexDirection: 'column',
           alignItems: 'center', justifyContent: 'center',
-          gap: '2.5rem', zIndex: 99,
+          gap: '2.5rem', zIndex: 200,
           opacity: 0, pointerEvents: 'none',
-          transform: 'translateY(-8px)',
         }}>
           {links.map(({ label, href }) => (
             <a
@@ -211,8 +213,9 @@ export default function Navbar() {
               {label}
             </a>
           ))}
-        </div>
+        </div>,
+        document.body
       )}
-    </nav>
+    </>
   )
 }
