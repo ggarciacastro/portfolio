@@ -1,7 +1,17 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 640)
+  useEffect(() => {
+    const h = () => setIsMobile(window.innerWidth < 640)
+    window.addEventListener('resize', h)
+    return () => window.removeEventListener('resize', h)
+  }, [])
+  return isMobile
+}
 
 function SvgYGame() {
   const size = 5
@@ -208,7 +218,7 @@ const projects = [
 
 const INITIAL_COUNT = 3
 
-function ProjectCard({ project, index, visible }) {
+function ProjectCard({ project, index, visible, isMobile }) {
   const [hovered, setHovered] = useState(false)
   const [githubHovered, setGithubHovered] = useState(false)
   const [demoHovered, setDemoHovered] = useState(false)
@@ -226,37 +236,41 @@ function ProjectCard({ project, index, visible }) {
         transition: `max-height 0.4s ease ${index * 0.08}s`,
       }}
     >
-      {/* Año + punto */}
-      <div style={{
-        display: 'flex', flexDirection: 'column',
-        alignItems: 'center', width: '80px',
-        flexShrink: 0, paddingTop: '1.6rem',
-      }}>
-        <span style={{
-          fontSize: '0.75rem', letterSpacing: '0.1em',
-          color: 'var(--amber)', fontWeight: 500, marginBottom: '0.6rem',
-        }}>
-          {project.year}
-        </span>
+      {/* Año + punto — oculto en móvil */}
+      {!isMobile && (
         <div style={{
-          width: '10px', height: '10px', borderRadius: '50%',
-          background: hovered ? 'var(--accent)' : 'var(--bg-card)',
-          border: '2px solid var(--accent)',
-          transition: 'background 0.2s', flexShrink: 0, zIndex: 1,
-        }} />
-      </div>
+          display: 'flex', flexDirection: 'column',
+          alignItems: 'center', width: '80px',
+          flexShrink: 0, paddingTop: '1.6rem',
+        }}>
+          <span style={{
+            fontSize: '0.75rem', letterSpacing: '0.1em',
+            color: 'var(--amber)', fontWeight: 500, marginBottom: '0.6rem',
+          }}>
+            {project.year}
+          </span>
+          <div style={{
+            width: '10px', height: '10px', borderRadius: '50%',
+            background: hovered ? 'var(--accent)' : 'var(--bg-card)',
+            border: '2px solid var(--accent)',
+            transition: 'background 0.2s', flexShrink: 0, zIndex: 1,
+          }} />
+        </div>
+      )}
 
       {/* Card */}
       <div
         onClick={() => window.open(project.github, '_blank', 'noreferrer')}
         style={{
-          flex: 1, marginLeft: '2rem', marginBottom: '2rem',
+          flex: 1,
+          marginLeft: isMobile ? '0' : '2rem',
+          marginBottom: '1.2rem',
           background: hovered ? 'var(--bg-card-hover)' : 'var(--bg-card)',
           border: `1px solid ${hovered ? 'var(--accent)' : 'var(--accent-border)'}`,
           borderRadius: '4px', overflow: 'hidden',
           display: 'flex', flexDirection: 'row',
           transition: 'background 0.2s, border-color 0.2s, transform 0.2s',
-          transform: hovered ? 'translateX(6px)' : 'translateX(0)',
+          transform: hovered && !isMobile ? 'translateX(6px)' : 'translateX(0)',
           cursor: 'pointer',
         }}
         onMouseEnter={() => setHovered(true)}
@@ -327,14 +341,16 @@ function ProjectCard({ project, index, visible }) {
           </div>
         </div>
 
-        {/* SVG a la derecha */}
-        <div style={{
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: '1.2rem', borderLeft: '1px solid var(--accent-border)',
-          background: 'rgba(0,0,0,0.1)', flexShrink: 0,
-        }}>
-          <Svg />
-        </div>
+        {/* SVG — oculto en móvil */}
+        {!isMobile && (
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '1.2rem', borderLeft: '1px solid var(--accent-border)',
+            background: 'rgba(0,0,0,0.1)', flexShrink: 0,
+          }}>
+            <Svg />
+          </div>
+        )}
       </div>
     </div>
   )
@@ -343,6 +359,7 @@ function ProjectCard({ project, index, visible }) {
 export default function Projects({ compact = false }) {
   const [expanded, setExpanded] = useState(false)
   const containerRef = useRef(null)
+  const isMobile = useIsMobile()
   const hiddenCount = projects.length - INITIAL_COUNT
 
   useGSAP(() => {
@@ -380,16 +397,19 @@ export default function Projects({ compact = false }) {
         </div>
 
         <div style={{ position: 'relative' }}>
-          <div style={{
-            position: 'absolute', left: '84px', top: 0, bottom: 0,
-            width: '1px', background: 'var(--accent-border)',
-          }} />
+          {!isMobile && (
+            <div style={{
+              position: 'absolute', left: '84px', top: 0, bottom: 0,
+              width: '1px', background: 'var(--accent-border)',
+            }} />
+          )}
           {projects.map((project, i) => (
             <ProjectCard
               key={i}
               project={project}
               index={i}
               visible={i < INITIAL_COUNT || expanded}
+              isMobile={isMobile}
             />
           ))}
         </div>
