@@ -469,7 +469,10 @@ function ProjectCard({ project, index, visible, isMobile }) {
             position: 'absolute', bottom: '0.7rem', right: '0.7rem',
             transform: 'scale(0.42)',
             transformOrigin: 'bottom right',
-            opacity: 0.28, pointerEvents: 'none', zIndex: 0,
+            opacity: 0.55, pointerEvents: 'none', zIndex: 0,
+            background: 'rgba(0,0,0,0.18)',
+            borderRadius: '6px',
+            padding: '6px',
           }}>
             <Svg />
           </div>
