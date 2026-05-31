@@ -177,6 +177,77 @@ function SvgMotoGP() {
   )
 }
 
+function SvgGazaTrauma() {
+  const w = 140, h = 100
+  const bars = [38, 62, 45, 80, 55, 70, 48]
+  const maxH = 54
+  return (
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ display: 'block', opacity: 0.88 }}>
+      {/* Eje X */}
+      <line x1={10} y1={72} x2={130} y2={72} stroke="rgba(167,139,250,0.25)" strokeWidth="1" />
+      {/* Barras */}
+      {bars.map((v, i) => {
+        const bh = (v / 100) * maxH
+        const x = 14 + i * 17
+        return (
+          <rect key={i} x={x} y={72 - bh} width={10} height={bh} rx="2"
+            fill={i === 3 ? 'rgba(167,139,250,0.55)' : 'rgba(167,139,250,0.2)'}
+            stroke="rgba(167,139,250,0.4)" strokeWidth="0.8" />
+        )
+      })}
+      {/* Línea de tendencia */}
+      <polyline
+        points={bars.map((v, i) => `${14 + i * 17 + 5},${72 - (v / 100) * maxH}`).join(' ')}
+        fill="none" stroke="rgba(244,114,182,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Etiqueta */}
+      <rect x={30} y={4} width={80} height={14} rx="2"
+        fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.25)" strokeWidth="1" />
+      <text x={70} y={14} textAnchor="middle" fontSize="6.5" fill="rgba(167,139,250,0.8)" fontFamily="monospace">
+        22-Month Analysis
+      </text>
+      {/* WHO badge */}
+      <circle cx={118} cy={82} r={8} fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.3)" strokeWidth="1" />
+      <text x={118} y={86} textAnchor="middle" fontSize="6" fill="rgba(167,139,250,0.7)" fontFamily="monospace">WHO</text>
+    </svg>
+  )
+}
+
+function SvgGazaNCD() {
+  const w = 140, h = 100
+  const segments = [
+    { pct: 0.35, color: 'rgba(167,139,250,0.6)',  label: 'CVD' },
+    { pct: 0.25, color: 'rgba(244,114,182,0.55)', label: 'DM' },
+    { pct: 0.22, color: 'rgba(251,191,36,0.5)',   label: 'HTN' },
+    { pct: 0.18, color: 'rgba(167,139,250,0.25)', label: 'Otro' },
+  ]
+  const cx = 42, cy = 50, r = 32
+  let angle = -Math.PI / 2
+  const slices = segments.map(s => {
+    const start = angle
+    const end = angle + s.pct * 2 * Math.PI
+    const x1 = cx + r * Math.cos(start), y1 = cy + r * Math.sin(start)
+    const x2 = cx + r * Math.cos(end),   y2 = cy + r * Math.sin(end)
+    const large = s.pct > 0.5 ? 1 : 0
+    angle = end
+    return { ...s, d: `M${cx},${cy} L${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} Z` }
+  })
+  return (
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} style={{ display: 'block', opacity: 0.88 }}>
+      {slices.map((s, i) => (
+        <path key={i} d={s.d} fill={s.color} stroke="rgba(13,13,26,0.4)" strokeWidth="1" />
+      ))}
+      {/* Leyenda */}
+      {segments.map((s, i) => (
+        <g key={i}>
+          <rect x={86} y={18 + i * 18} width={8} height={8} rx="1.5" fill={s.color} />
+          <text x={98} y={26 + i * 18} fontSize="7" fill="rgba(237,233,255,0.65)" fontFamily="monospace">{s.label}</text>
+        </g>
+      ))}
+      <text x={42} y={97} textAnchor="middle" fontSize="6" fill="rgba(167,139,250,0.5)" fontFamily="monospace">NCD · Gaza 2024–25</text>
+    </svg>
+  )
+}
+
 const projects = [
   {
     title: 'YGame',
@@ -186,6 +257,27 @@ const projects = [
     demo: '#',
     year: '2026',
     Svg: SvgYGame,
+  },
+  
+  {
+    title: 'Análisis estadístico — Trauma en Gaza',
+    description: 'Validación del código Python para el análisis estadístico del proyecto "Longitudinal Analysis of Conflict-Related Traumatic Injuries in Gaza — A 22-Month Study of Emergency Medical Teams Data", liderado por la Universidad de Oviedo en colaboración con la OMS.',
+    tags: ['Python', 'Estadística', 'OMS', 'Biomédico'],
+    github: null,
+    demo: '#',
+    year: '2026',
+    pending: true,
+    Svg: SvgGazaTrauma,
+  },
+  {
+    title: 'Análisis estadístico — ENT en Gaza',
+    description: 'Validación del código Python para el análisis estadístico del proyecto "Non-Communicable Disease Care Delivered by Emergency Medical Teams during the Gaza Health Response in 2024–2025", en colaboración con la OMS.',
+    tags: ['Python', 'Estadística', 'OMS', 'Biomédico'],
+    github: null,
+    demo: '#',
+    year: '2026',
+    pending: true,
+    Svg: SvgGazaNCD,
   },
   {
     title: 'Compilador Python--',
@@ -213,7 +305,7 @@ const projects = [
     demo: '#',
     year: '2025',
     Svg: SvgMotoGP,
-  },
+  }
 ]
 
 const INITIAL_COUNT = 3
@@ -260,7 +352,7 @@ function ProjectCard({ project, index, visible, isMobile }) {
 
       {/* Card */}
       <div
-        onClick={() => window.open(project.github, '_blank', 'noreferrer')}
+        onClick={() => project.github && window.open(project.github, '_blank', 'noreferrer')}
         style={{
           flex: 1,
           marginLeft: isMobile ? '0' : '2rem',
@@ -268,10 +360,11 @@ function ProjectCard({ project, index, visible, isMobile }) {
           background: hovered ? 'var(--bg-card-hover)' : 'var(--bg-card)',
           border: `1px solid ${hovered ? 'var(--accent)' : 'var(--accent-border)'}`,
           borderRadius: '4px', overflow: 'hidden',
+          position: 'relative',
           display: 'flex', flexDirection: 'row',
           transition: 'background 0.2s, border-color 0.2s, transform 0.2s',
           transform: hovered && !isMobile ? 'translateX(6px)' : 'translateX(0)',
-          cursor: 'pointer',
+          cursor: project.github ? 'pointer' : 'default',
         }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -295,21 +388,31 @@ function ProjectCard({ project, index, visible, isMobile }) {
                 </span>
               )}
             </div>
-            <div style={{ display: 'flex', gap: '1rem' }}>
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noreferrer"
-                onClick={e => e.stopPropagation()}
-                style={{
-                  color: githubHovered ? 'var(--accent)' : 'var(--fg-muted)',
-                  fontSize: '0.82rem', transition: 'color 0.2s', textDecoration: 'none',
-                }}
-                onMouseEnter={() => setGithubHovered(true)}
-                onMouseLeave={() => setGithubHovered(false)}
-              >
-                GitHub ↗
-              </a>
+            <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+              {project.github ? (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  style={{
+                    color: githubHovered ? 'var(--accent)' : 'var(--fg-muted)',
+                    fontSize: '0.82rem', transition: 'color 0.2s', textDecoration: 'none',
+                  }}
+                  onMouseEnter={() => setGithubHovered(true)}
+                  onMouseLeave={() => setGithubHovered(false)}
+                >
+                  GitHub ↗
+                </a>
+              ) : project.pending && (
+                <span style={{
+                  fontSize: '0.72rem', letterSpacing: '0.08em',
+                  color: 'var(--amber)', border: '1px solid var(--amber-border)',
+                  borderRadius: '2px', padding: '0.15rem 0.5rem',
+                }}>
+                  Pendiente de publicación
+                </span>
+              )}
               {project.demo !== '#' && (
                 <a
                   href={project.demo}
@@ -351,12 +454,20 @@ function ProjectCard({ project, index, visible, isMobile }) {
           </div>
         </div>
 
-        {/* SVG — oculto en móvil */}
-        {!isMobile && (
+        {/* SVG — panel completo en desktop, miniatura decorativa en móvil */}
+        {!isMobile ? (
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             padding: '1.2rem', borderLeft: '1px solid var(--accent-border)',
             background: 'rgba(0,0,0,0.1)', flexShrink: 0,
+          }}>
+            <Svg />
+          </div>
+        ) : (
+          <div style={{
+            position: 'absolute', bottom: '0.8rem', right: '0.8rem',
+            opacity: 0.18, transform: 'scale(0.45)', transformOrigin: 'bottom right',
+            pointerEvents: 'none',
           }}>
             <Svg />
           </div>
