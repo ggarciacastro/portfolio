@@ -373,6 +373,7 @@ function ProjectCard({ project, index, visible, isMobile }) {
         <div style={{
           flex: 1, padding: '1.4rem 1.6rem',
           display: 'flex', flexDirection: 'column', gap: '0.8rem',
+          position: 'relative', zIndex: 1,
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
@@ -440,7 +441,7 @@ function ProjectCard({ project, index, visible, isMobile }) {
             {project.description}
           </p>
 
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', paddingRight: isMobile ? '60px' : 0 }}>
             {project.tags.map(tag => (
               <span key={tag} style={{
                 padding: '0.25rem 0.75rem',
@@ -465,9 +466,10 @@ function ProjectCard({ project, index, visible, isMobile }) {
           </div>
         ) : (
           <div style={{
-            position: 'absolute', bottom: '0.8rem', right: '0.8rem',
-            opacity: 0.18, transform: 'scale(0.45)', transformOrigin: 'bottom right',
-            pointerEvents: 'none',
+            position: 'absolute', bottom: '0.7rem', right: '0.7rem',
+            transform: 'scale(0.42)',
+            transformOrigin: 'bottom right',
+            opacity: 0.28, pointerEvents: 'none', zIndex: 0,
           }}>
             <Svg />
           </div>
